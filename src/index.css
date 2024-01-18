@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+
+.login-bg {
+  background-image: url(../src/assets/login-bg.png);
+}
