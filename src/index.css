@@ -11,3 +11,22 @@ html {
 .login-bg {
   background-image: url(../src/assets/login-bg.png);
 }
+
+
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-top >.ant-tabs-nav, :where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-bottom >.ant-tabs-nav, :where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-top >div>.ant-tabs-nav, :where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-bottom >div>.ant-tabs-nav {
+  margin: 0;
+}
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar, :where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-bottom >.ant-tabs-nav .ant-tabs-ink-bar, :where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-top >div>.ant-tabs-nav .ant-tabs-ink-bar, :where(.css-dev-only-do-not-override-1qhpsh8).ant-tabs-bottom >div>.ant-tabs-nav .ant-tabs-ink-bar {
+  height: 4px;
+}
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-popover .ant-popover-inner {
+  padding: 0;
+}
+
+.navlink {
+  color: #6E8BB7;
+}
+.navlink.active {
+  background-color: #4094F7;
+  color: #fff;
+}
