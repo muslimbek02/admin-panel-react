@@ -15,10 +15,10 @@ const OrderPage = () => {
       <div className="w-[calc(100%-64px)] h-screen overflow-y-auto">
         <div className="h-[64px] border-b pl-[20px] flex items-center justify-between">
           <h1 className="text-[20px] text-[#303940] font-semibold">Заказы</h1>
-          <button className="border-l flex items-center py-[12px] px-[20px] text-[14px] text-[#1AC19D]">
+          <Link to={'/order/add-order'} className="border-l flex items-center py-[12px] px-[20px] text-[14px] text-[#1AC19D]">
             <FaPlus className="mr-[12px]" />
             Добавить
-          </button>
+          </Link>
         </div>
         <div className="px-[20px] flex items-center justify-between py-[12px] bg-[#F7F9FB]">
           <div className="relative flex items-center w-[400px]">

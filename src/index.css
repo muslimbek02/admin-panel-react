@@ -107,3 +107,10 @@ html {
 .ant-table-measure-row {
   display: none;
 }
+
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  border: none;
+  background-color: #4094F726;
+  color: #4094f7;
+  font-weight: 500;
+}
