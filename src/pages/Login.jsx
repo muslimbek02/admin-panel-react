@@ -1,10 +1,29 @@
-import {} from "react";
-import CompImg from "../assets/comp-img.svg";
+import { useState } from "react";
 import UserIcon from "../assets/User.svg";
 import LockIcon from "../assets/lock.svg";
 import EyeIcon from "../assets/Eye.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [user, setUser] = useState({ userName: "", userPassword: "" });
+  const navigate = useNavigate();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (user.userName && user.userPassword) {
+      if (user.userName === "admin" && user.userPassword === "admin") {
+        navigate("/dashboard");
+      } else {
+        alert("parol yoki login xato!");
+      }
+    } else {
+      alert("Iltimos formni to'ldiring");
+    }
+  };
+  const handleChange = (evt) => {
+    setUser({ ...user, [evt.target.name]: evt.target.value });
+  };
+
   return (
     <div className="w-full flex">
       <div className="w-1/2 px-[41px] login-bg h-screen">
@@ -19,7 +38,7 @@ const Login = () => {
 
         {/* ------ Login form -----  */}
 
-        <form className="mt-[40px]">
+        <form method="POST" className="mt-[40px]" onSubmit={handleSubmit}>
           <label
             htmlFor="userName"
             className="text-[#1A2024] font-semibold inline-block mb-[8px]"
@@ -30,6 +49,9 @@ const Login = () => {
             <input
               id="userName"
               name="userName"
+              onChange={handleChange}
+              value={user.userName}
+              required
               type="text"
               className="w-full text-black text-[14px] p-[12px] pl-[48px] rounded-[8px] border border-[#6E8BB74D]"
             />
@@ -49,6 +71,9 @@ const Login = () => {
             <input
               id="userPassword"
               name="userPassword"
+              onChange={handleChange}
+              value={user.userPassword}
+              required
               type="password"
               className="w-full text-black text-[14px] p-[12px] pl-[48px] rounded-[8px] border border-[#6E8BB74D]"
             />

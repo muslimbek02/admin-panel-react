@@ -7,7 +7,7 @@ import Notifications from "../../assets/notifications.svg";
 import Ellipse from "../../assets/Ellipse.png";
 
 const links = [
-  {href: '/', icon: <MdAnalytics />},
+  {href: '/dashboard', icon: <MdAnalytics />},
   {href: '/order', icon: <MdShoppingCart /> },
   {href: '/clients', icon: <HiUsers />},
   {href: '/settings', icon: <RiSettings3Fill />},

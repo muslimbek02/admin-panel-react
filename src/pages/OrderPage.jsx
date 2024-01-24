@@ -31,7 +31,7 @@ const OrderPage = () => {
           </div>
           <div className="flex items-center">
             <DateOrder />
-            <Popover trigger={'click'} content={<OrderTableCols/>}>
+            <Popover trigger={'click'} placement={'bottomLeft'} content={<OrderTableCols/>}>
               <button className="ml-[24px] text-[#303940] flex items-center">
                 <FaTableColumns className="mr-[12px]" />
                 Столбцы
