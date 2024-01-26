@@ -13,7 +13,7 @@ const OrderPage = () => {
     <div className="h-screen flex">
       <Aside />
       <div className="w-[calc(100%-64px)] h-screen overflow-y-auto">
-        <div className="h-[64px] border-b pl-[20px] flex items-center justify-between">
+        <div className="bg-white h-[64px] border-b pl-[20px] flex items-center justify-between">
           <h1 className="text-[20px] text-[#303940] font-semibold">Заказы</h1>
           <Link to={'/order/add-order'} className="border-l flex items-center py-[12px] px-[20px] text-[14px] text-[#1AC19D]">
             <FaPlus className="mr-[12px]" />

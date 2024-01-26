@@ -7,7 +7,7 @@ import { FaSave } from "react-icons/fa";
 
 const AddOrderHeader = () => {
   return (
-    <div className="h-[64px] border-b pl-[20px] flex items-center justify-between">
+    <div className="bg-white h-[64px] border-b pl-[20px] flex items-center justify-between">
           <div className="flex items-center">
             <h1 className="text-[18px] text-[#303940] font-semibold border-r pr-[16px]">
               Заказ
@@ -42,7 +42,7 @@ const AddOrderHeader = () => {
               />
             </div>
             <div className="text-[#F76659] text-[14px] font-medium h-full border-r px-[16px] flex items-center">
-              <button className="flex items-center">
+              <button type="reset" className="flex items-center">
                 <TiDelete className="text-[20px] mr-[12px]" />
                 <span>Отменить</span>
               </button>
