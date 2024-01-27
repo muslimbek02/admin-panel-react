@@ -3,7 +3,7 @@ import orderReducer from "./slices/orderSlice";
 
 export const store = configureStore({
   reducer: {
-    order: orderReducer,
+    orderState: orderReducer,
     devTools: process.env.NODE_ENV !== 'production',
   },
 })

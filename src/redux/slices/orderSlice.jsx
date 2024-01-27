@@ -1,116 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
-import TableActionButton from "../../components/TableActionButton";
-
-const columns = [
-  {
-    title: "№",
-    dataIndex: "num",
-  },
-  {
-    title: "Клиент",
-    dataIndex: "client",
-    render: (client) => (
-      <div className="text-[14px]">
-        <p className="text-[#303940] mb-[8px]">{client.name}</p>
-        <a href={`tel:${client.phone}`} className="text-[#4094F7] font-medium">
-          {client.phone}
-        </a>
-      </div>
-    ),
-  },
-  {
-    title: "Ид.заказа",
-    dataIndex: "orderId",
-  },
-  {
-    title: "Таймер",
-    dataIndex: "timer",
-    render: (timer) => (
-      <div className="bg-[#38D9B933] rounded-[6px] text-[#1AC19D] font-medium text-center py-[4px] px-[12px]">
-        {timer}
-      </div>
-    ),
-  },
-  {
-    title: "Курьер",
-    dataIndex: "kuryer",
-  },
-  {
-    title: "Филиал",
-    dataIndex: "part",
-    render: (client) => (
-      <div className="text-[14px]">
-        <p className="text-[#303940] mb-[8px]">{client.name}</p>
-        <a href={`tel:${client.phone}`} className="text-[#4094F7] font-medium">
-          {client.phone}
-        </a>
-      </div>
-    ),
-  },
-  {
-    title: "Тип доставки",
-    dataIndex: "type",
-    render: (type) => (
-      <div className="bg-[#F8DD4E4D] rounded-[6px] text-[#D29404] font-medium text-center py-[4px] px-[12px]">
-        {type}
-      </div>
-    ),
-  },
-  {
-    title: "Цена заказа",
-    dataIndex: "price",
-  },
-  {
-    title: "Адресс клиента",
-    dataIndex: "address",
-  },
-  {
-    title: (
-      <TableActionButton />
-    ),
-    dataIndex: "action",
-    render: () => (
-      <TableActionButton/>
-    ),
-    className: "action-col",
-  },
-];
 
 const initialState = {
   order: {
+    orderId: "",
+    date: "",
+    timer: "",
+    status: "new",
+    orderType: "order",
+    orderTariff: "vip",
+    address: "",
+    branch: "",
+    home: "",
+    apartment: "",
+    floor: "",
     client: {
-      type: '',
+      clientType: "vip",
       name: "",
       surname: "",
-      phones: [''],
+      phones: [{ phone: "", id: 1, type: "old", desc: "" }],
       description: "",
     },
-      orderId: "",
-      date: "",
-      timer: "",
-      status: "",
-      orderType: '',
-      orderTariff: '',
-      address: '',
-      branch: '',
-      home: '',
-      apartment: '',
-      floor: '',
     products: [
       {
-        title: '',
-        price: '',
-        count: '',
-        desc: '',
-  
-      }
+        id: "1",
+        title: "Гамбургер",
+        price: 20000,
+        count: 1,
+        desc: "",
+      },
     ],
     payment: {
-      paymentType: '',
-      courier: '',
-      operator: '',
-      deliveryPrice: ''
-    }
+      paymentType: "cash",
+      courier: null,
+      operator: null,
+      deliveryPrice: 10000,
+    },
   },
   columnsStatus: {
     num: true,
@@ -123,16 +47,147 @@ const initialState = {
     orderPrice: true,
     status: true,
   },
-  columns,
-  orderList: []
+  // columns,
+  orderList: [],
 };
 
 export const orderSlice = createSlice({
-  name: "order",
+  name: "orderState",
   initialState,
-  reducers: {},
+  reducers: {
+    setDateOrderCreatedAt: (state, { payload }) => {
+      state.order.date = payload;
+    },
+    setStatusOrder: (state, { payload }) => {
+      state.order.status = payload;
+    },
+    setOrderId: (state, { payload }) => {
+      state.order.orderId = payload;
+    },
+    setTimerOrder: (state, { payload }) => {
+      state.order.timer = payload;
+    },
+    setOrderType: (state, { payload }) => {
+      state.order.orderType = payload;
+    },
+    setOrderTarif: (state, { payload }) => {
+      state.order.orderTariff = payload;
+    },
+    setClientType: (state, { payload }) => {
+      state.order.client.clientType = payload;
+    },
+    setClientName: (state, { payload }) => {
+      state.order.client.name = payload;
+    },
+    setClientSurName: (state, { payload }) => {
+      state.order.client.surname = payload;
+    },
+    setClientDesc: (state, { payload }) => {
+      state.order.client.description = payload;
+    },
+    setPhoneChanges: (state, { payload: { value, index } }) => {
+      state.order.client.phones[index].phone = value;
+    },
+    addNewPhone: (state) => {
+      const newPhone = { phone: "", id: Date.now(), type: "new" };
+      state.order.client.phones.push(newPhone);
+    },
+    deletePhone: (state, { payload }) => {
+      const newPhones = state.order.client.phones.filter(
+        (item) => item.id !== payload
+      );
+      state.order.client.phones = newPhones;
+    },
+    setProductTitle: (state, { payload: { index, value, price } }) => {
+      state.order.products[index].title = value;
+      state.order.products[index].price = price;
+    },
+    incrementProductCount: (state, { payload }) => {
+      state.order.products[payload].count += 1;
+    },
+    decrementProductCount: (state, { payload }) => {
+      if (state.order.products[payload].count > 1) {
+        state.order.products[payload].count -= 1;
+      }
+    },
+    deleteProduct: (state, { payload }) => {
+      const filteredProducts = state.order.products.filter(
+        (item) => item.id !== payload
+      );
+      state.order.products = filteredProducts;
+    },
+    setProductDesc: (state, { payload: { index, value } }) => {
+      state.order.products[index].desc = value;
+    },
+    addNewproduct: (state) => {
+      const newProduct = {
+        id: Date.now(),
+        title: "Гамбургер",
+        price: 20000,
+        count: 1,
+        desc: "",
+      };
+      state.order.products.push(newProduct);
+    },
+    setPaymentType: (state, { payload }) => {
+      state.order.payment.paymentType = payload;
+    },
+    setCourier: (state, { payload }) => {
+      state.order.payment.courier = payload;
+    },
+    setOperator: (state, { payload }) => {
+      state.order.payment.operator = payload;
+    },
+    setOrderData: (state, { payload: { name, value } }) => {
+      state.order[name] = value;
+    },
+    addNewOrder: (state, {payload}) => {
+      const newOrder = {
+        ...state.order,
+        allPrice:
+          state.order.products.reduce((sum, product) => {
+            return sum + product.count * product.price;
+          }, 0) + state.order.payment.deliveryPrice,
+      };
+      const orderIndex = state.orderList.findIndex(({orderId}) => orderId === payload);
+      if(orderIndex !== -1) {
+        state.orderList[orderIndex] = newOrder;
+      }else{
+        state.orderList.push(newOrder);
+      }
+    },
+    setOrder: (state, {payload}) => {
+      state.order = payload;
+    }
+  },
 });
 
-export const {} = orderSlice.actions;
+export const {
+  setDateOrderCreatedAt,
+  setStatusOrder,
+  setTimerOrder,
+  setClientType,
+  setClientName,
+  setClientSurName,
+  setPhoneChanges,
+  addNewPhone,
+  deletePhone,
+  setClientDesc,
+  setProductTitle,
+  incrementProductCount,
+  decrementProductCount,
+  deleteProduct,
+  setProductDesc,
+  addNewproduct,
+  setPaymentType,
+  setCourier,
+  setOperator,
+  setOrderTarif,
+  setOrderType,
+  setOrderData,
+  addNewOrder,
+  setOrderId,
+  setOrder,
+} = orderSlice.actions;
 
 export default orderSlice.reducer;
