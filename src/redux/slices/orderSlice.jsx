@@ -1,5 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const data = [];
+for (let i = 1; i < 146; i++) {
+  data.push({
+    orderId: i,
+    allPrice: 20000,
+    date: i,
+    timer: "02:00",
+    status: "new",
+    orderType: "order",
+    orderTariff: "vip",
+    address: "yunusabad",
+    branch: "yunusabad",
+    home: "2",
+    apartment: "56",
+    floor: "6",
+    client: {
+      clientType: "vip",
+      name: "Anvarjon",
+      surname: "Soliyev",
+      phones: [{ phone: "+998 (93) 949-44-11", id: 1, type: "old", desc: "" }],
+      description: "",
+    },
+    products: [
+      {
+        id: "1",
+        title: "Гамбургер",
+        price: 20000,
+        count: 1,
+        desc: "",
+      },
+    ],
+    payment: {
+      paymentType: "cash",
+      courier: "Anvar",
+      operator: "Bobur",
+      deliveryPrice: 10000,
+    },
+  });
+}
+
 const initialState = {
   order: {
     orderId: "",
@@ -47,8 +87,9 @@ const initialState = {
     orderPrice: true,
     status: true,
   },
-  // columns,
-  orderList: [],
+  activeOrderTabItem: "all",
+  orderList: data,
+  filteredOrderList: data,
 };
 
 export const orderSlice = createSlice({
@@ -141,7 +182,7 @@ export const orderSlice = createSlice({
     setOrderData: (state, { payload: { name, value } }) => {
       state.order[name] = value;
     },
-    addNewOrder: (state, {payload}) => {
+    addNewOrder: (state, { payload }) => {
       const newOrder = {
         ...state.order,
         allPrice:
@@ -149,16 +190,37 @@ export const orderSlice = createSlice({
             return sum + product.count * product.price;
           }, 0) + state.order.payment.deliveryPrice,
       };
-      const orderIndex = state.orderList.findIndex(({orderId}) => orderId === payload);
-      if(orderIndex !== -1) {
+      const orderIndex = state.orderList.findIndex(
+        ({ orderId }) => orderId.toString() === payload
+      );
+      if (orderIndex !== -1) {
         state.orderList[orderIndex] = newOrder;
-      }else{
+      } else {
         state.orderList.push(newOrder);
       }
     },
-    setOrder: (state, {payload}) => {
+    setOrder: (state, { payload }) => {
       state.order = payload;
-    }
+    },
+    setFilteredOrderList: (state, { payload }) => {
+      const newOrderList =
+        payload === "all"
+          ? state.orderList
+          : state.orderList.filter(({ status }) => status === payload);
+      state.filteredOrderList = newOrderList;
+    },
+    setActiveOrderTabItem: (state, { payload }) => {
+      state.activeOrderTabItem = payload;
+    },
+    searchOrderItems: (state, {payload}) => {
+      const searchedItems = state.orderList.filter(({payment, client, orderId}) => (
+        payment.courier.toLowerCase().includes(payload.toLowerCase()) ||
+        orderId.toString().toLowerCase().includes(payload.toLowerCase()) ||
+        client.name.toLowerCase().includes(payload.toLowerCase()) ||
+        client.surname.toLowerCase().includes(payload.toLowerCase())
+      ));
+      state.filteredOrderList = searchedItems;
+    },
   },
 });
 
@@ -188,6 +250,9 @@ export const {
   addNewOrder,
   setOrderId,
   setOrder,
+  setFilteredOrderList,
+  setActiveOrderTabItem,
+  searchOrderItems,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

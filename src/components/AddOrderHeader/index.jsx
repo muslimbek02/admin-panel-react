@@ -44,7 +44,7 @@ const AddOrderHeader = ({ id }) => {
           <Select
             options={[
               { label: "Новый", value: "new" },
-              { label: "Доставлен", value: "created" },
+              { label: "Доставлен", value: "completed" },
             ]}
             value={status}
             onChange={(val) => dispatch(setStatusOrder(val))}

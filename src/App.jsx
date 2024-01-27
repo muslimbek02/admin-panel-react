@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import AddOrderPage from "./pages/AddOrderPage"
 import Dashboard from "./pages/Dashboard"
+import FilterOrderPage from "./pages/FilterOrderPage"
 import Login from "./pages/Login"
 import OrderPage from "./pages/OrderPage"
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/order" element={<OrderPage />} />
         <Route path="/order/add-order/:id" element={<AddOrderPage />} />
+        <Route path="/order/filter" element={<FilterOrderPage />} />
       </Routes>
     </BrowserRouter>
   )

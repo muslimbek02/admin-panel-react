@@ -1,4 +1,4 @@
-import {useEffect } from 'react';
+import { useEffect } from "react";
 
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,16 +15,12 @@ const tabItems = [
 ];
 
 const AddOrderPage = () => {
-  const {order, orderList} = useSelector((state) => state.orderState);
+  const { order, orderList } = useSelector((state) => state.orderState);
 
   const { id } = useParams();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  
-  
-  
 
   const handleSubmitOrder = (evt) => {
     evt.preventDefault();
@@ -65,22 +61,22 @@ const AddOrderPage = () => {
           operator: null,
           deliveryPrice: 10000,
         },
-      }
+      };
       dispatch(addNewOrder(id));
       dispatch(setOrder(obj));
-      navigate('/order');
+      navigate("/order");
     } else {
       alert("Iltimos Hamma maydonlarni toldiring!!!");
     }
   };
   useEffect(() => {
     dispatch(setOrderId(id));
-    const findObj = orderList.find(order => order.orderId === id);
-    if(findObj !== undefined) {
+    const findObj = orderList.find((order) => order.orderId.toString() === id);
+    console.log(findObj);
+    if (findObj !== undefined) {
       dispatch(setOrder(findObj));
-      alert('true')
     }
-  }, []);
+  }, [id]);
 
   return (
     <div className="h-screen flex">

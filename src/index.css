@@ -131,3 +131,42 @@ body {
 input::placeholder {
   color: #6E7C87 !important;
 }
+
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-switch {
+  background: rgba(0, 0, 0, 0.45);;
+}
+body {
+  overflow: hidden;
+}
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-popover .ant-popover-inner-content {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4094f7;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* For Firefox */
+/* Note: Firefox supports scrollbar styling only in the dark theme */
+* {
+  scrollbar-color: #888 #f1f1f1;
+}
+
+*::-moz-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+*::-moz-scrollbar-track {
+  background-color: #f1f1f1;
+}

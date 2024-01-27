@@ -36,7 +36,14 @@ const orderTableCols = [
   },
 ]
 
-const OrderTableCols = () => {
+const OrderTableCols = ({columns, setColumns}) => {
+
+  const handleChangeToggle = (checked, index) => {
+    setColumns((prevColumns) => 
+      prevColumns.map((column, i) => i === index ? {...column, show: checked} : column)
+      )
+  }
+
   return (
     <div className="rounded-[6px] w-[316px] bg-[#F7F9FB] text-[#303940]">
       <div className="py-[12px] px-[16px]">
@@ -51,12 +58,12 @@ const OrderTableCols = () => {
       </div>
       <div className="">
         {
-          orderTableCols.map(({isChecked, title}) => (
+          columns.map((({show, title}, index) => (
             <div className="px-[16px] h-[48px] flex items-center justify-between border-t" key={title}>
               <h4 className="text-[#303940] text-[14px] font-medium">{title}</h4>
-              <Switch checked={isChecked} />
+              <Switch checked={show} onChange={(checked) => handleChangeToggle(checked, index)} />
             </div>
-          ))
+          )))
         }
       </div>
     </div>
