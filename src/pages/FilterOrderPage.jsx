@@ -20,7 +20,7 @@ import TableOrderActionButton from "../components/TableOrderActionButton";
 import Aside from "../components/Aside";
 import OrderTable from "../components/OrderTable";
 import OrderTabs from "../components/OrderTabs";
-import FilterInputWithIcon from "../components/filterInputWithIcon";
+import FilterInputWithIcon from "../components/FilterInputWithIcon";
 import FilterSelectWithIcon from "../components/FilterSelectWithIcon";
 
 const FilterOrderPage = () => {
