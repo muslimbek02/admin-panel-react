@@ -11,7 +11,8 @@ import OrderTable from "../components/OrderTable";
 import OrderTableCols from "../components/OrderTableCols";
 import OrderTabs from "../components/OrderTabs";
 import { searchOrderItems, setDateOrderCreatedAt } from "../redux/slices/orderSlice";
-import TableActionButton from "../components/TableActionButton"
+import SearchInput from '../components/SearchInput';
+import TableOrderActionButton from '../components/TableOrderActionButton';
 
 
 const OrderPage = () => {
@@ -98,7 +99,7 @@ const OrderPage = () => {
       title: "Action",
       show: true,
       dataIndex: "action",
-      render: (action) => <TableActionButton id={action} />,
+      render: (action) => <TableOrderActionButton id={action} />,
       className: "action-col",
     },
   ];
@@ -149,16 +150,7 @@ const OrderPage = () => {
           </button>
         </div>
         <div className="px-[20px] flex items-center justify-between py-[12px] bg-[#F7F9FB]">
-          <div className="relative flex items-center w-[400px]">
-            <input
-              type="text"
-              value={searchVal}
-              onChange={handleChangeSearchVal}
-              placeholder="Поиск"
-              className="block border text-[#9AA6AC] text-[14px] h-[32px] border-[#E5E9EB] rounded-[6px] w-full pl-[32px]"
-            />
-            <FaSearch className="absolute left-[8px] text-[#9AA6AC]" />
-          </div>
+          <SearchInput value={searchVal} onChange={handleChangeSearchVal} />
           <div className="flex items-center">
             <DateOrder />
             <Popover trigger={'click'} placement={'bottomLeft'} content={<OrderTableCols setColumns={setColumns} columns={columns}  />}>

@@ -77,10 +77,7 @@ const AddOrderContent = () => {
     apartment,
     floor,
   } = useSelector((state) => state.orderState.order);
-  const {orderList} = useSelector(state => state.orderState);
-
-
- 
+  const { orderList } = useSelector((state) => state.orderState);
 
   const { clientType, name, surname, phones, description } = client;
 
@@ -127,10 +124,10 @@ const AddOrderContent = () => {
   const AllPrice = products.reduce((sum, product) => {
     return sum + product.count * product.price;
   }, 0);
-  const handleChangeOrderData = evt => {
-    const orderData = {name: evt.target.name, value: evt.target.value};
+  const handleChangeOrderData = (evt) => {
+    const orderData = { name: evt.target.name, value: evt.target.value };
     dispatch(setOrderData(orderData));
-  }
+  };
 
   return (
     <div className="px-[16px] mb-[41px] pt-[20px] font-inter">
@@ -269,7 +266,12 @@ const AddOrderContent = () => {
                 Адрес
               </h2>
               <div className="w-[calc(100%-96px)]">
-                <Input name="address" value={address} onChange={handleChangeOrderData} placeholder="Адрес или обьект" />
+                <Input
+                  name="address"
+                  value={address}
+                  onChange={handleChangeOrderData}
+                  placeholder="Адрес или обьект"
+                />
               </div>
             </div>
             <div className="w-full h-[289px]">
@@ -287,7 +289,12 @@ const AddOrderContent = () => {
                 Филиал
               </h2>
               <div className="w-[calc(100%-96px)]">
-                <Input name="branch" value={branch} onChange={handleChangeOrderData} placeholder="Филиал" />
+                <Input
+                  name="branch"
+                  value={branch}
+                  onChange={handleChangeOrderData}
+                  placeholder="Филиал"
+                />
               </div>
             </div>
             <div className="flex  gap-x-[24px]">
@@ -296,7 +303,12 @@ const AddOrderContent = () => {
                   Дом
                 </h2>
                 <div className="w-[calc(100%-96px)] pl-[16px]">
-                  <Input name="home" value={home} onChange={handleChangeOrderData} placeholder="Дом"  />
+                  <Input
+                    name="home"
+                    value={home}
+                    onChange={handleChangeOrderData}
+                    placeholder="Дом"
+                  />
                 </div>
               </div>
               <div className="w-1/2 flex items-center">
@@ -304,7 +316,12 @@ const AddOrderContent = () => {
                   Квартира
                 </h2>
                 <div className="w-[calc(100%-96px)]">
-                  <Input name="apartment" value={apartment} onChange={handleChangeOrderData} placeholder="Квартира" />
+                  <Input
+                    name="apartment"
+                    value={apartment}
+                    onChange={handleChangeOrderData}
+                    placeholder="Квартира"
+                  />
                 </div>
               </div>
             </div>
@@ -313,7 +330,12 @@ const AddOrderContent = () => {
                 Этаж
               </h2>
               <div className="w-[calc(100%-96px)]">
-                <Input name="floor" value={floor} onChange={handleChangeOrderData} placeholder="Этаж" />
+                <Input
+                  name="floor"
+                  value={floor}
+                  onChange={handleChangeOrderData}
+                  placeholder="Этаж"
+                />
               </div>
             </div>
           </div>

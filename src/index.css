@@ -170,3 +170,20 @@ body {
 *::-moz-scrollbar-track {
   background-color: #f1f1f1;
 }
+
+.clients-table .ant-table-cell {
+  text-align: center !important;
+}
+.clients-table .action-col {
+  display: flex !important;
+  justify-content: center !important;
+}
+.submenu-link.active {
+  background-color: #4094f7;
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-picker .ant-picker-suffix {
+  font-size: 18px;
+  color: #4094f7;
+}

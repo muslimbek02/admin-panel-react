@@ -1,19 +1,24 @@
 import { NavLink } from 'react-router-dom'
-import { MdAnalytics, MdShoppingCart } from "react-icons/md";
+import { MdAnalytics, MdShoppingCart, MdShoppingBasket } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
 import { RiSettings3Fill } from "react-icons/ri";
 
 import Notifications from "../../assets/notifications.svg";
 import Ellipse from "../../assets/Ellipse.png";
+import { setIsOpenMenu } from '../../redux/slices/orderSlice';
+import { useDispatch } from 'react-redux';
 
 const links = [
   {href: '/dashboard', icon: <MdAnalytics />},
   {href: '/order', icon: <MdShoppingCart /> },
   {href: '/clients', icon: <HiUsers />},
+  {href: '/marketing', icon: <MdShoppingBasket />},
   {href: '/settings', icon: <RiSettings3Fill />},
 ]
 
 const Aside = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-[64px] border-r bg-white p-[12px] flex flex-col">
         <div className="w-[40px] text-[22px] font-semibold  cursor-pointer rounded-full text-white flex items-center justify-center h-[40px] bg-[#0E73F6]">
@@ -21,7 +26,7 @@ const Aside = () => {
         </div>
         <div className="flex flex-col mt-[24px] bg-[#F0F3F8] rounded-[6px]">
           {links.map(({href, icon}, index) => (
-            <NavLink key={index} to={href} className="navlink w-[40px] h-[40px] rounded-[6px] flex items-center justify-center">
+            <NavLink end={false} onClick={href === '/marketing' ? () => dispatch(setIsOpenMenu(true)) : () => {} } key={index} to={href} className="navlink w-[40px] h-[40px] rounded-[6px] flex items-center justify-center">
               {icon}
             </NavLink>
           ))}

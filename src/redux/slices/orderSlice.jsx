@@ -90,6 +90,7 @@ const initialState = {
   activeOrderTabItem: "all",
   orderList: data,
   filteredOrderList: data,
+  isOpenMenu: true,
 };
 
 export const orderSlice = createSlice({
@@ -221,6 +222,9 @@ export const orderSlice = createSlice({
       ));
       state.filteredOrderList = searchedItems;
     },
+    setIsOpenMenu: (state, {payload}) => {
+      state.isOpenMenu = payload;
+    }
   },
 });
 
@@ -253,6 +257,7 @@ export const {
   setFilteredOrderList,
   setActiveOrderTabItem,
   searchOrderItems,
+  setIsOpenMenu,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

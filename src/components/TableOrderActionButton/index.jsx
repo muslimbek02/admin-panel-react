@@ -40,7 +40,7 @@ const Content = ({id}) =>  (
       </button>
   </div>
 );
-const TableActionButton = ({id}) => {
+const TableOrderActionButton = ({id}) => {
   return (
     <Popover placement="bottomLeft" content={<Content id={id} />} trigger={"click"}>
       <button className="p-[4px] text-[20px] border border-[#E5E9EB] text-[#4094F7] rounded-[6px]">
@@ -50,4 +50,4 @@ const TableActionButton = ({id}) => {
   );
 };
 
-export default TableActionButton;
+export default TableOrderActionButton;

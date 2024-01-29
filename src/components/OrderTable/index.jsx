@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TableActionButton from "../../components/TableActionButton";
+import TableActionButton from "../TableOrderActionButton";
 import { Table } from "antd";
 import { useSelector } from "react-redux";
 
