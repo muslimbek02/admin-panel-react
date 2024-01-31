@@ -1,11 +1,9 @@
-import { DatePicker, Input, Switch, Tabs } from "antd";
 import React from "react";
 import { FaSave } from "react-icons/fa";
 import { FaArrowLeft, FaChevronRight, FaFolder } from "react-icons/fa6";
 import { TiDelete } from "react-icons/ti";
 import { Link, NavLink } from "react-router-dom";
 import BranchAbout from "../components/BranchAbout";
-import CompanyAbout from "../components/CompanyAbout";
 
 const AddCompanyBranches = () => {
   return (
@@ -34,7 +32,7 @@ const AddCompanyBranches = () => {
             className="text-[#252C32] flex items-center breadcrumb-item-active"
           >
             <FaFolder className="mr-[4px] text-[#4094F7]" />
-            L'Oréal
+            The Walt Disney Company
           </Link>
         </div>
         <div className="flex h-full items-center px-[16px] border-l">

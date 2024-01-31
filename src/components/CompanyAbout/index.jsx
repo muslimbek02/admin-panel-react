@@ -6,7 +6,7 @@ const {TextArea} = Input;
 const CompanyAbout = () => {
   return (
     <div className="font-inter text-[14px] my-[20px] grid grid-cols-2 gap-[20px]  px-[20px]">
-      <div className="w-full bg-white pt-[8px] rounded-[6px]">
+      <div className="w-full bg-white pt-[8px] pb-[16px] rounded-[6px]">
         <TitleWithBorderB>Общие сведения</TitleWithBorderB>
         <div className="flex px-[16px] items-center mt-[16px]">
           <h2 className="w-[40%] pr-[16px] text-[#48535B] font-semibold">

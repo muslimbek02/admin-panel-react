@@ -8,6 +8,8 @@ import AddMarketingReviews from "./pages/AddMarketingReviews";
 import AddMarketingShares from "./pages/AddMarketingShares";
 import AddOrderPage from "./pages/AddOrderPage";
 import AddSettingsCompany from "./pages/AddSettingsCompany";
+import BranchCatalog from "./pages/BranchCatalog";
+import BranchPersonal from "./pages/BranchPersonal";
 import ClientsPage from "./pages/ClientsPage";
 import Dashboard from "./pages/Dashboard";
 import FilterOrderPage from "./pages/FilterOrderPage";
@@ -47,6 +49,8 @@ function App() {
           <Route path="company/add" element={<AddSettingsCompany />} />
           <Route path="company/branches" element={<CompanyBranches />} />
           <Route path="company/branches/add" element={<AddCompanyBranches />} />
+          <Route path="company/branches/catalog" element={<BranchCatalog />} />
+          <Route path="company/branches/personal" element={<BranchPersonal />} />
           <Route path="company/regions" element={<CompanyRegions />} />
         </Route>
       </Routes>

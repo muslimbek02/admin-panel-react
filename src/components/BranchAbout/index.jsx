@@ -1,19 +1,58 @@
-import {useState} from 'react'
-import { Input, TimePicker } from 'antd';
+import { useState } from "react";
+import { Checkbox, Input, TimePicker } from "antd";
 import InputMask from "react-input-mask";
-import { FaMinus, FaPlus } from 'react-icons/fa';
-import TitleWithBorderB from '../TitleWithBorderB'
+import { FaMinus, FaPlus } from "react-icons/fa";
+import dayjs from "dayjs";
+import TitleWithBorderB from "../TitleWithBorderB";
 import ShareImg from "../../assets/share-img.png";
-import dayjs from 'dayjs';
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
-const {RangePicker} = TimePicker;
+const { RangePicker } = TimePicker;
 
 const BranchAbout = () => {
-
+  const days = [
+    {
+      title: "Понедельник",
+      isWork: true,
+      time: ["09:00", "18:00"],
+    },
+    {
+      title: "Вторник",
+      isWork: true,
+      time: ["09:00", "18:00"],
+    },
+    {
+      title: "Среда",
+      isWork: true,
+      time: ["09:00", "18:00"],
+    },
+    {
+      title: "Четверг",
+      isWork: true,
+      time: ["09:00", "18:00"],
+    },
+    {
+      title: "Пятница",
+      isWork: true,
+      time: ["09:00", "18:00"],
+    },
+    {
+      title: "Суббота",
+      isWork: true,
+      time: ["09:00", "18:00"],
+    },
+    {
+      title: "Воскрессенье",
+      isWork: false,
+      time: ["09:00", "18:00"],
+    },
+  ];
+  const [workingDays, setWorkingDays] = useState(days);
   const [phones, setPhones] = useState([
     { id: "1", phone: "+998 (90) 123-45-67", isNew: false },
   ]);
+
+
+
   const handleChangePhones = (value, index) => {
     const newPhones = [...phones];
     newPhones[index].phone = value;
@@ -32,6 +71,17 @@ const BranchAbout = () => {
     };
     setPhones([...phones, newPhone]);
   };
+
+  const handleTimeChange = (timeString, index) => {
+    const days = [...workingDays];
+    days[index].time = timeString;
+    setWorkingDays(days);
+  }
+  const handleIsWorkChange = (checked, index) => {
+    const days = [...workingDays];
+    days[index].isWork = checked;
+    setWorkingDays(days);
+  }
 
   return (
     <div className="p-[20px] text-[14px]">
@@ -127,20 +177,33 @@ const BranchAbout = () => {
         </div>
         <div className="w-full pt-[8px] bg-white rounded-[6px]">
           <TitleWithBorderB>График работы</TitleWithBorderB>
-          <div className="px-[16px] mt-[16px] flex items-center">
-            <h2 className="w-[112px] text-[#48535B] font-semibold">
-              Понедельник
-            </h2>
-            <RangePicker
-              format={"hh:mm"}
-              inputReadOnly={true}
-              value={[dayjs("09:00", "hh:mm"), dayjs("18:00", "HH:mm")]}
-            />
-          </div>
+          {workingDays.map(({ isWork, time, title }, index) => (
+            <div key={index} className="px-[16px] mt-[16px] flex items-center">
+              <h2 className="w-[112px] text-[#48535B] font-semibold">
+                {title}
+              </h2>
+              <div className="w-[calc(100%-128px)] px-[16px]">
+                <RangePicker
+                  onChange={(_, timeString) =>
+                    handleTimeChange(timeString, index)
+                  }
+                  format={"HH:mm"}
+                  className="w-full"
+                  value={[dayjs(time[0], "hh:mm"), dayjs(time[1], "hh:mm")]}
+                  disabled={!isWork}
+                />
+              </div>
+              <Checkbox
+                onChange={(evt) => handleIsWorkChange(evt.target.checked, index)}
+                className="ml-auto"
+                checked={isWork}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default BranchAbout
+export default BranchAbout;

@@ -1,11 +1,10 @@
 import React from "react";
-import { FaArrowLeft, FaChevronRight, FaFilter, FaFolder, FaPlus } from "react-icons/fa";
-import { TiDelete } from "react-icons/ti";
+import { FaFilter, FaPlus, FaSave } from "react-icons/fa";
+import { FaArrowLeft, FaChevronRight, FaFolder } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
-import CompanyBranchesTabel from "../CompanyBranchesTable";
-import SearchInput from "../SearchInput";
+import CatalogContent from "../components/CatalogContent";
 
-const CompanyBranches = () => {
+const BranchCatalog = () => {
   return (
     <div>
       <div className="bg-white h-[64px] border-b pl-[20px] flex items-center justify-between">
@@ -23,8 +22,16 @@ const CompanyBranches = () => {
             to={"/settings/company/branches"}
             className="text-[#252C32] flex items-center breadcrumb-item-active"
           >
-            <FaFolder className="mr-[4px] text-[#4094F7]" />
+            <FaFolder className="mr-[4px] text-[#D5DADD]" />
             L'Oréal
+          </Link>
+          <FaChevronRight className="text-[12px] mx-[15px] text-[#B0BABF]" />
+          <Link
+            to={"/settings/company/branches/catalog"}
+            className="text-[#252C32] flex items-center breadcrumb-item-active"
+          >
+            <FaFolder className="mr-[4px] text-[#4094F7]" />
+            The Walt Disney Company
           </Link>
         </div>
         <Link
@@ -38,22 +45,22 @@ const CompanyBranches = () => {
       <div className="flex h-[56px] justify-between items-center px-[20px] text-[14px] bg-[#F7F9FB] text-[#6E8BB7]">
         <div className="flex items-center h-full">
           <NavLink
-            to="/settings/company/add"
+            to="/settings/company/branches/add"
             className="tablink h-full flex items-center"
           >
-            О компании
+            О филиале
           </NavLink>
           <NavLink
-            to="/settings/company/branches"
+            to="/settings/company/branches/catalog"
             className="mx-[16px] tablink h-full flex items-center"
           >
-            Филиалы компаний
+            Каталог
           </NavLink>
           <NavLink
-            to="/settings/company/regions"
+            to="/settings/company/branches/personal"
             className="tablink h-full flex items-center"
           >
-            Регионы
+            Персонал
           </NavLink>
         </div>
         <Link to={"/"} className="text-[#303940] flex items-center">
@@ -61,16 +68,9 @@ const CompanyBranches = () => {
           Фильтр
         </Link>
       </div>
-      <div className="p-[20px]">
-        <div className="p-[20px] bg-white rounded-[6px]">
-          <div>
-            <SearchInput />
-          </div>
-          <CompanyBranchesTabel />
-        </div>
-      </div>
+      <CatalogContent />
     </div>
   );
 };
 
-export default CompanyBranches;
+export default BranchCatalog;
