@@ -104,7 +104,7 @@ body {
 }
 
 .action-col {
-  border: 1px solid #f0f0f0;
+  /* border: 1px solid #f0f0f0; */
 }
 .ant-table-measure-row {
   display: none;
@@ -171,13 +171,13 @@ body {
   background-color: #f1f1f1;
 }
 
-.clients-table .ant-table-cell {
+/* .clients-table .ant-table-cell {
   text-align: center !important;
 }
 .clients-table .action-col {
   display: flex !important;
   justify-content: center !important;
-}
+} */
 .submenu-link.active {
   background-color: #4094f7;
   color: white;
@@ -186,4 +186,13 @@ body {
 :where(.css-dev-only-do-not-override-1qhpsh8).ant-picker .ant-picker-suffix {
   font-size: 18px;
   color: #4094f7;
+}
+.ant-table-content {
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+}
+
+.tablink.active {
+  box-shadow: 0px -4px 0px 0px #3593F9 inset;
+  color: #4094F7;
 }

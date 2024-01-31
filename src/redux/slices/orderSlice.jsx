@@ -91,6 +91,7 @@ const initialState = {
   orderList: data,
   filteredOrderList: data,
   isOpenMenu: true,
+  isOpenSettingsMenu: true,
 };
 
 export const orderSlice = createSlice({
@@ -213,18 +214,22 @@ export const orderSlice = createSlice({
     setActiveOrderTabItem: (state, { payload }) => {
       state.activeOrderTabItem = payload;
     },
-    searchOrderItems: (state, {payload}) => {
-      const searchedItems = state.orderList.filter(({payment, client, orderId}) => (
-        payment.courier.toLowerCase().includes(payload.toLowerCase()) ||
-        orderId.toString().toLowerCase().includes(payload.toLowerCase()) ||
-        client.name.toLowerCase().includes(payload.toLowerCase()) ||
-        client.surname.toLowerCase().includes(payload.toLowerCase())
-      ));
+    searchOrderItems: (state, { payload }) => {
+      const searchedItems = state.orderList.filter(
+        ({ payment, client, orderId }) =>
+          payment.courier.toLowerCase().includes(payload.toLowerCase()) ||
+          orderId.toString().toLowerCase().includes(payload.toLowerCase()) ||
+          client.name.toLowerCase().includes(payload.toLowerCase()) ||
+          client.surname.toLowerCase().includes(payload.toLowerCase())
+      );
       state.filteredOrderList = searchedItems;
     },
-    setIsOpenMenu: (state, {payload}) => {
+    setIsOpenMenu: (state, { payload }) => {
       state.isOpenMenu = payload;
-    }
+    },
+    setIsOpenSettingsMenu: (state, { payload }) => {
+      state.isOpenSettingsMenu = payload;
+    },
   },
 });
 
@@ -258,6 +263,7 @@ export const {
   setActiveOrderTabItem,
   searchOrderItems,
   setIsOpenMenu,
+  setIsOpenSettingsMenu,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

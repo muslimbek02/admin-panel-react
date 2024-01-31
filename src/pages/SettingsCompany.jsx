@@ -1,19 +1,18 @@
-import { FaFilter, FaPlus } from "react-icons/fa6";
-import React from "react";
-import { Link } from "react-router-dom";
-import SearchInput from "../components/SearchInput";
-import BannersTabel from "../components/BannersTable";
+import React from 'react'
+import { FaFilter, FaPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import CompanyTabel from '../components/CompanyTabel';
+import SearchInput from '../components/SearchInput';
 
-const MarketingBanners = () => {
+const SettingsCompany = () => {
   return (
     <div>
       <div className="bg-white h-[64px] border-b pl-[20px] flex items-center justify-between">
         <h1 className="text-[18px] text-[#303940] font-semibold">
-          Список баннеров
+          Список компаний
         </h1>
         <Link
-          //onClick={handleClickAddOrder}
-          to={`/marketing/banners/add`}
+          to={`/settings/company/add`}
           className="border-l flex items-center py-[12px] px-[20px] text-[14px] text-[#1AC19D]"
         >
           <FaPlus className="mr-[12px]" />
@@ -32,10 +31,10 @@ const MarketingBanners = () => {
         </div>
       </div>
       <div className="px-[20px]">
-        <BannersTabel />
+        <CompanyTabel />
       </div>
     </div>
   );
-};
+}
 
-export default MarketingBanners;
+export default SettingsCompany

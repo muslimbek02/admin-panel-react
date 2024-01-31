@@ -2,7 +2,7 @@ import { Table } from "antd";
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import ClientsTableActionButton from "../ClientsTableActionButton";
+import TableActionButton from "../TableActionButton";
 
 const SharesTable = () => {
   const columns = [
@@ -14,13 +14,16 @@ const SharesTable = () => {
     {
       title: "Начало акции",
       dataIndex: "startedDate",
+      align: 'center',
     },
     {
       title: "Конец акции",
       dataIndex: "finishedDate",
+      align: 'center',
     },
     {
       title: "Статус",
+      align: 'center',
       dataIndex: "status",
       render: ({ isActive, label }) => (
         <div className="flex justify-center">
@@ -42,8 +45,9 @@ const SharesTable = () => {
           <BsThreeDots />
         </button>
       ),
+      align: 'center',
       dataIndex: "action",
-      render: () => <ClientsTableActionButton />,
+      render: () => <TableActionButton href='/marketing/shares/add' />,
       className: "action-col",
     },
   ];

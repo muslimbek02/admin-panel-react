@@ -4,22 +4,29 @@ import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import TableActionButton from "../TableActionButton";
 
-const ClientsTable = () => {
+import NegativeImg from "../../assets/negative.png";
+import PositiveImg from "../../assets/positive.png";
+
+const ReviewsTable = () => {
   const columns = [
     {
       title: "Название",
       dataIndex: "title",
-      render: (title) => <Link to={"/clients/add"}>{title}</Link>,
     },
     {
-      title: "Номер телефона",
-      dataIndex: "phone",
+      title: "Тип",
+      dataIndex: "typeReview",
       align: "center",
+      render: (type) => (
+        <div className="flex justify-center">
+          <img src={type ? PositiveImg : NegativeImg} alt="" />
+        </div>
+      ),
     },
     {
       title: "Статус",
-      dataIndex: "status",
       align: "center",
+      dataIndex: "status",
       render: ({ isActive, label }) => (
         <div className="flex justify-center">
           <div
@@ -40,42 +47,39 @@ const ClientsTable = () => {
           <BsThreeDots />
         </button>
       ),
-      dataIndex: "action",
       align: "center",
-      render: () => <TableActionButton href="/clients/add" />,
+      dataIndex: "action",
+      render: () => <TableActionButton href="/marketing/reviews/add" />,
       className: "action-col",
     },
   ];
   const data = [
     {
-      key: '1',
-      title: "Cody Fisher",
-      phone: "(907) 555-0101",
+      key: "1",
+      title: "😉 Курьер молодец",
+      typeReview: true,
       status: {
         isActive: true,
         label: "Активный",
       },
-      action: "",
     },
     {
-      key: '2',
-      title: "Cody Fisher",
-      phone: "(907) 555-0101",
-      status: {
-        isActive: false,
-        label: "Активный",
-      },
-      action: "",
-    },
-    {
-      key: '3',
-      title: "Cody Fisher",
-      phone: "(907) 555-0101",
+      key: "2",
+      title: "😉 Курьер молодец",
+      typeReview: false,
       status: {
         isActive: true,
         label: "Активный",
       },
-      action: "",
+    },
+    {
+      key: "3",
+      title: "😉 Курьер молодец",
+      typeReview: false,
+      status: {
+        isActive: true,
+        label: "Активный",
+      },
     },
   ];
 
@@ -86,4 +90,4 @@ const ClientsTable = () => {
   );
 };
 
-export default ClientsTable;
+export default ReviewsTable;

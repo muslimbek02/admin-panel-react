@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 
 
-const Content = () =>  (
+const Content = ({href}) =>  (
   <div className="w-[251px]">
-      <Link to={`/clients/add`} className="border-b w-full py-[8px] pr-[16px] flex items-center pl-[8px]">
+      <Link to={href} className="border-b w-full py-[8px] pr-[16px] flex items-center pl-[8px]">
         <div className="mr-[12px] bg-[#E3EFFE] text-[16px] rounded-[6px] text-[#4094F7] p-[8px]">
           <MdEdit />
         </div>
@@ -23,14 +23,14 @@ const Content = () =>  (
   </div>
 );
 
-const ClientsTableActionButton = () => {
+const TableActionButton = ({href}) => {
   return (
-      <Popover placement="bottomLeft" content={<Content />} trigger={"click"}>
-      <button className="p-[4px] text-[20px] border border-[#E5E9EB] text-[#4094F7] rounded-[6px]">
+      <Popover placement="bottomLeft" content={<Content href={href} />} trigger={"click"}>
+      <button type='button' className="p-[4px] text-[20px] border border-[#E5E9EB] text-[#4094F7] rounded-[6px]">
         <BsThreeDots />
       </button>
     </Popover>
   )
 }
 
-export default ClientsTableActionButton
+export default TableActionButton
