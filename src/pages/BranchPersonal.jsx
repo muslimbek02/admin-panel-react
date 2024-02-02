@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFilter, FaPlus, FaSave } from "react-icons/fa";
 import { FaArrowLeft, FaChevronRight, FaFolder } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import PersonalContent from "../components/PersonalContent";
 
 const BranchPersonal = () => {
+  const [activeKey, setActiveKey] = useState('1')
+
   return (
     <div>
       <div className="bg-white h-[64px] border-b pl-[20px] flex items-center justify-between">
@@ -35,7 +37,7 @@ const BranchPersonal = () => {
           </Link>
         </div>
         <Link
-          to="/settings/company/branches/personal/add"
+          to={`/settings/company/branches/personal/${activeKey === '1' ? 'courier' : 'cashier' }`}
           className="ml-[16px] px-[16px] h-full flex border-l items-center text-[14px] text-[#1AC19D] font-medium"
         >
           <FaPlus className="mr-[12px]" />
@@ -68,7 +70,7 @@ const BranchPersonal = () => {
           Фильтр
         </Link>
       </div>
-      <PersonalContent />
+      <PersonalContent setActiveKey={setActiveKey} activeKey={activeKey} />
     </div>
   );
 };

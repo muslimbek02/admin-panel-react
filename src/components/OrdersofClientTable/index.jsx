@@ -1,7 +1,10 @@
 import { Table } from 'antd'
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 const OrdersofClientTable = () => {
+
+
   const columns = [
     {
       title: "ID",
@@ -74,6 +77,8 @@ const OrdersofClientTable = () => {
       source: 'Телеграм бот'
     }
   ]
+
+
 
   return (
     <div className="mt-[20px] pr-[20px]">

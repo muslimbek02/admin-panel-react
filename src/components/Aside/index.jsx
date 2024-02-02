@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom'
 import { MdAnalytics, MdShoppingCart, MdShoppingBasket } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
 import { RiSettings3Fill } from "react-icons/ri";
-
+import { useDispatch } from 'react-redux';
+import { BiSolidCategory } from "react-icons/bi";
 import Notifications from "../../assets/notifications.svg";
 import Ellipse from "../../assets/Ellipse.png";
 import { setIsOpenMenu, setIsOpenSettingsMenu } from '../../redux/slices/orderSlice';
-import { useDispatch } from 'react-redux';
 
 const links = [
   {href: '/dashboard', icon: <MdAnalytics />},
@@ -56,6 +56,12 @@ const Aside = () => {
           className="navlink w-[40px] h-[40px] rounded-[6px] flex items-center justify-center"
         >
           <RiSettings3Fill />
+        </NavLink>
+        <NavLink
+          to={"/menu"}
+          className="navlink w-[40px] h-[40px] rounded-[6px] flex items-center justify-center"
+        >
+          <BiSolidCategory />
         </NavLink>
       </div>
       <div className="mt-auto flex flex-col items-center">

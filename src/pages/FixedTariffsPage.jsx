@@ -1,19 +1,18 @@
+import { Input } from "antd";
 import React from "react";
 import { FaSave } from "react-icons/fa";
 import { FaArrowLeft, FaChevronRight, FaFolder } from "react-icons/fa6";
 import { TiDelete } from "react-icons/ti";
-import { Link, NavLink } from "react-router-dom";
-import CompanyAbout from "../components/CompanyAbout";
+import { Link } from "react-router-dom";
+import TitleWithBorderB from "../components/TitleWithBorderB";
 
-
-
-const AddSettingsCompany = () => {
+const FixedTariffsPage = () => {
   return (
     <form>
       <div className="bg-white h-[64px] border-b pl-[20px] flex items-center justify-between">
         <div className="flex items-center text-[14px]">
           <Link
-            to={"/settings/company"}
+            to={"/settings/tariffs"}
             className="flex items-center text-[#6E7C87]"
           >
             <FaArrowLeft className="text-[#D5DADD]" />
@@ -22,7 +21,7 @@ const AddSettingsCompany = () => {
           </Link>
           <FaChevronRight className="text-[12px] mx-[15px] text-[#B0BABF]" />
           <Link
-            to={"/settings/company/add"}
+            to={"/settings/tariffs/fixed"}
             className="text-[#252C32] flex items-center breadcrumb-item-active"
           >
             <FaFolder className="mr-[4px] text-[#4094F7]" />
@@ -31,7 +30,7 @@ const AddSettingsCompany = () => {
         </div>
         <div className="flex h-full items-center px-[16px] border-l">
           <div className="text-[#F76659] text-[14px] font-medium h-full border-r px-[16px] flex items-center">
-            <Link to={"/settings/company"} className="flex items-center">
+            <Link to={"/settings/tariffs"} className="flex items-center">
               <TiDelete className="text-[20px] mr-[12px]" />
               <span>Отменить</span>
             </Link>
@@ -42,29 +41,31 @@ const AddSettingsCompany = () => {
           </button>
         </div>
       </div>
-      <div className="flex h-[56px] items-center px-[20px] text-[14px] bg-[#F7F9FB] text-[#6E8BB7]">
-        <NavLink
-          to="/settings/company/add"
-          className="tablink h-full flex items-center"
-        >
-          О компании
-        </NavLink>
-        <NavLink
-          to="/settings/company/branches"
-          className="mx-[16px] tablink h-full flex items-center"
-        >
-          Филиалы компаний
-        </NavLink>
-        <NavLink
-          to="/settings/company/regions"
-          className="tablink h-full flex items-center"
-        >
-          Регионы
-        </NavLink>
+      <div className="p-[20px] w-[60%] text-[14px]">
+        <div className="bg-white pt-[8px] rounded-[6px]">
+          <TitleWithBorderB>Общие сведение</TitleWithBorderB>
+          <div className="p-[20px]">
+            <div className="flex items-center">
+              <h2 className="w-[176px] font-semibold text-[#48535B]">
+                Название
+              </h2>
+              <div className="w-[calc(100%-176px)] pl-[16px]">
+                <Input />
+              </div>
+            </div>
+            <div className="mt-[16px] flex items-center">
+              <h2 className="w-[176px] font-semibold text-[#48535B]">
+                Базовая цена
+              </h2>
+              <div className="w-[calc(100%-176px)] pl-[16px]">
+                <Input />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <CompanyAbout />
     </form>
   );
 };
 
-export default AddSettingsCompany;
+export default FixedTariffsPage;

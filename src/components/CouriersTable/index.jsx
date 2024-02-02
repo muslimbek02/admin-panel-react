@@ -2,7 +2,7 @@ import { Table } from "antd";
 import { BsThreeDots } from "react-icons/bs";
 import TableActionButton from "../TableActionButton";
 
-const CouriersTable = () => {
+const CouriersTable = ({ activeKey }) => {
   const columns = [
     {
       title: "Полное имя",
@@ -44,7 +44,13 @@ const CouriersTable = () => {
         </button>
       ),
       dataIndex: "action",
-      render: () => <TableActionButton href="/settings/company/branches/add" />,
+      render: () => (
+        <TableActionButton
+          href={`/settings/company/branches/personal/${
+            activeKey === "1" ? "courier" : "cashier"
+          }`}
+        />
+      ),
       align: "center",
     },
   ];

@@ -1,31 +1,36 @@
 import { Input, Select } from "antd";
 import InputMask from "react-input-mask";
-import { useState } from "react";
 import TitleWithBorderB from "../TitleWithBorderB";
 import ClientImg from "../../assets/client-img.png";
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { changeClientPhone, setClientFullName, addNewPhone, deletePhone, setTypeClient } from "../../redux/slices/clientSlice";
 
 const AddClientContent = () => {
-  const [phones, setPhones] = useState([
-    { id: "1", phone: "+998 (90) 123-45-67", isNew: false },
-  ]);
+  const { id } = useParams();
+  const {clientName, typeClient, clientSurname, phones} = useSelector(state => state.clientState.client);
+  const dispatch = useDispatch();
+
+
+
+  const handleChangeFullName = (evt) => {
+    const fullName = {
+      name: evt.target.name,
+      value: evt.target.value,
+    };
+    dispatch(setClientFullName(fullName));
+  }
+
   const handleChangePhones = (value, index) => {
-    const newPhones = [...phones];
-    newPhones[index].phone = value;
-    setPhones([...newPhones]);
+    dispatch(changeClientPhone({value, index}));
   };
 
   const handledeletePhone = (id) => {
-    const filteredPhones = phones.filter((item) => item.id !== id);
-    setPhones(filteredPhones);
+    dispatch(deletePhone(id));
   };
   const addPhone = () => {
-    const newPhone = {
-      id: Date.now(),
-      phone: "",
-      isNew: true,
-    };
-    setPhones([...phones, newPhone]);
+    dispatch(addNewPhone());
   };
 
   return (
@@ -57,13 +62,21 @@ const AddClientContent = () => {
           <div className="w-full flex items-center mb-[16px]">
             <h2 className="w-[15%] font-semibold">Имя</h2>
             <div className="w-[85%] pl-[24px]">
-              <Input value={"София"} />
+              <Input
+                value={clientName}
+                onChange={handleChangeFullName}
+                name="clientName"
+              />
             </div>
           </div>
           <div className="w-full flex items-center mb-[16px]">
             <h2 className="w-[15%] font-semibold">Фамилия</h2>
             <div className="w-[85%] pl-[24px]">
-              <Input value={"София"} />
+              <Input
+                value={clientSurname}
+                onChange={handleChangeFullName}
+                name="clientSurname"
+              />
             </div>
           </div>
           <div className="w-full">
@@ -99,7 +112,8 @@ const AddClientContent = () => {
             <div className="w-[85%] pl-[24px]">
               <Select
                 className="w-full bg-white-select"
-                defaultValue={"vip"}
+                value={typeClient}
+                onChange={varl => dispatch(setTypeClient(val))}
                 options={[{ label: "VIP", value: "vip" }]}
               />
             </div>

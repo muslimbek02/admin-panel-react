@@ -45,7 +45,7 @@ const CompanyBranchesTabel = () => {
   ];
 
   return (
-    <div className="border bg-white p-[20px] mt-[20px] rounded-[6px] w-full overflow-auto">
+    <div className="mt-[20px] w-full overflow-auto">
       <Table columns={columns} dataSource={data} />
     </div>
   );
